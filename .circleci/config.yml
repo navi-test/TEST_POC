@@ -7,12 +7,11 @@ workflows:
 
 jobs:
   test:
-    machine:
-      - image: ubuntu-2004:202101-01     
+    docker:
+      - image: cimg/node:16.11.1
     steps:
       - checkout
-      - run: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
-      - run: nvm install --lts 
+      - run: node --version
       - run:
           name: Install Dependencies
           command: yarn install
