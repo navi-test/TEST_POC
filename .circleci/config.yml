@@ -14,7 +14,7 @@ jobs:
       - run: node --version
       - run:
           name: Install Dependencies
-          command: npx install
+          command: yarn install
       - run:
           name: Install Testing Dependencies
           command: cd test/e2e ; ls ; npm install
