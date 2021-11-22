@@ -7,8 +7,8 @@ workflows:
 
 jobs:
   test:
-    docker:
-      - image: cimg/node:16.11.1
+    machine:
+      - image: ubuntu-2004:202101-01
     steps:
       - checkout
       - run: node --version
