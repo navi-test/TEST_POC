@@ -11,6 +11,7 @@ jobs:
       - image: cimg/node:17.1.0
     steps:
       - checkout
+      - run: node --version
       - run:
           name: Install Dependencies
           command: yarn install
@@ -25,7 +26,7 @@ jobs:
           command: tar -xf sc-4.7.1-linux.tar.gz
       - run:
           name: Start Sauce Labs Tunnel
-          command: ./sc-4.7.1-linux/bin/sc -u sso-optum-hyusein.hyuseinov -k 8c08d53c-97b0-4dc2-8edf-cc2d46c1784c --region us-west --tunnel-name sso-optum-hyusein.hyuseinov_tunnel_name &
+          command: ./sc-4.7.1-linux/bin/sc -u sso-optum-hyusein.hyuseinov -k 8c08d53c-97b0-4dc2-8edf-cc2d46c1784c -x https://api.us-west-1.saucelabs.com/rest/v1 -i sso-optum-hyusein.hyuseinov_tunnel_id &
       - run:
           name: Run Sauce Labs Tests
           command: cd test/e2e ; sleep 30 ; npm run sauce
