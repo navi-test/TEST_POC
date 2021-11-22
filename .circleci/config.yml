@@ -11,8 +11,6 @@ jobs:
       - image: cimg/node:17.1.0
     steps:
       - checkout
-      - run: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
-      - run: nvm install --lts 
       - run:
           name: Install Dependencies
           command: yarn install
