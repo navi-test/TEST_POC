@@ -3,12 +3,15 @@ version: 2.1
 workflows:
   test-deploy:
     jobs:
-      - test
+      - build
 
 jobs:
-  test:
+  build:
     machine:
-      - image: ubuntu-2004:202101-01
+      - image: ubuntu-2004:202104-01
     steps:
       - checkout
+      # Whatever you want to do
+      - run: sudo apt-get update && sudo apt-get install -y cowsay
+      - run: cowsay Continuous Integration Rocks!
 
