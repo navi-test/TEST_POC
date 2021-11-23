@@ -9,12 +9,20 @@ workflows:
       - test
 
 
-jobs:
-  
+jobs:  
   test:
     machine:
       image: ubuntu-2004:202104-01
     steps: 
+      - run:
+         name: Creating Dummy Artifacts
+         command: |
+          mkdir /tmp/artifacts;
+      - store_artifacts:
+         path: /tmp/sc.log
+         destination: artifact-file
+      - store_artifacts:
+         path: /tmp/artifacts
       - checkout
       - run: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
       - run: nvm install --lts 
