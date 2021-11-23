@@ -14,15 +14,6 @@ jobs:
     machine:
       image: ubuntu-2004:202104-01
     steps: 
-      - run:
-         name: Creating Dummy Artifacts
-         command: |
-          mkdir /tmp/artifacts;
-      - store_artifacts:
-         path: /tmp/sc.log
-         destination: artifact-file
-      - store_artifacts:
-         path: /tmp/artifacts
       - checkout
       - run: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
       - run: nvm install --lts 
@@ -50,7 +41,7 @@ jobs:
       - run:
           name: Start Sauce Labs Tunnel
           background: true
-          command: ./sc-4.7.1-linux/bin/sc -u sso-optum-hyusein.hyuseinov -k 8c08d53c-97b0-4dc2-8edf-cc2d46c1784c
+          command: ./sc-4.7.1-linux/bin/sc --user sso-optum-hyusein.hyuseinov --api-key 8c08d53c-97b0-4dc2-8edf-cc2d46c1784c
      #command: ./sc-4.7.1-linux/bin/sc -u sso-optum-hyusein.hyuseinov -k 8c08d53c-97b0-4dc2-8edf-cc2d46c1784c --region us-west --tunnel-name sso-optum-hyusein.hyuseinov_tunnel_name
      
       - run: |
