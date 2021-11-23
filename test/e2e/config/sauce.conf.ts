@@ -7,7 +7,8 @@ config.capabilities = [
         platformName: 'Android',
         platformVersion: '10',
         appWaitActivity: "com.swaglabsmobileapp.MainActivity",
-        app: 'storage:filename=sample.apk'
+        app: 'storage:filename=sample.apk',
+        newCommandTimeout: 60
     }
 ];
 
