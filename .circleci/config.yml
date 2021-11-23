@@ -47,7 +47,7 @@ jobs:
      #command: ./sc-4.7.1-linux/bin/sc -u sso-optum-hyusein.hyuseinov -k 8c08d53c-97b0-4dc2-8edf-cc2d46c1784c --region us-west --tunnel-name sso-optum-hyusein.hyuseinov_tunnel_name
      
       - run: |
-          sleep 30
+          sleep 31
           cd test/e2e
           npm run sauce
       #- run:
