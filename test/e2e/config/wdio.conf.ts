@@ -13,11 +13,11 @@ export const config: WebdriverIO.Config = {
     capabilities: [{
       // These capabilities are being set in the config files dedicated for the given platform, e.g. android.conf.ts and sauce.conf.ts
     }],
-    logLevel: 'info',
+    logLevel: 'debug',
     bail: 0,
-    waitforTimeout: 10000,
-    connectionRetryTimeout: 120000,
-    connectionRetryCount: 1,
+    waitforTimeout: 30000,
+    connectionRetryTimeout: 320000,
+    connectionRetryCount: 3,
  
     user: 'sso-optum-hyusein.hyuseinov',
     key: '8c08d53c-97b0-4dc2-8edf-cc2d46c1784c',
@@ -43,8 +43,8 @@ export const config: WebdriverIO.Config = {
         source: true,
         strict: false,
         tagsInTitle: false,
-        timeout: 50000,
-        retry: 0
+        timeout: 100000,
+        retry: 3
     },
    reporters: [
     [

@@ -3,7 +3,7 @@ const buildName = `POC Mobile Tests: ${new Date().getTime()}`;
 
 config.capabilities = [
     {
-        deviceName: 'Google Pixel 4',
+        deviceName: 'Samsung Galaxy S20',
         platformName: 'Android',
         platformVersion: '10',
         appWaitActivity: "com.swaglabsmobileapp.MainActivity",
