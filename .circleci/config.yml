@@ -1,9 +1,8 @@
 
 version: 2.1
-#dependencies:
-#  post:
-#    - wget https://saucelabs.com/downloads/sc-latest-linux.tar.gz
-#    - tar -xzf sc-latest-linux.tar.gz
+dependencies:
+  cache_directories:
+    - "test/e2e/node_modules"
 workflows:
   test-deploy:
     jobs:

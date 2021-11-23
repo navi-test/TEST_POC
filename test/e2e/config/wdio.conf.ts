@@ -27,7 +27,8 @@ export const config: WebdriverIO.Config = {
       ],
    // reporters: ['spec',['allure', {outputDir: 'allure-results'}]],
    framework: 'cucumber',
-    cucumberOpts: {
+   //framework: 'mocha',
+   cucumberOpts: {
         backtrace: false,
         requireModule: [],
         failAmbiguousDefinitions: false,
@@ -46,6 +47,10 @@ export const config: WebdriverIO.Config = {
         timeout: 100000,
         retry: 3
     },
+    logLevels: {
+        webdriver: 'debug',
+        '@wdio/appium-service': 'debug'
+    },
    reporters: [
     [
         'cucumberjs-json', {
@@ -55,10 +60,10 @@ export const config: WebdriverIO.Config = {
     ]
 ],
 
-    mochaOpts: {
+   /*  mochaOpts: {
         ui: 'bdd',
-        timeout: 60000
-    },
+        timeout: 1200000
+    }, */
     //
     // =====
     // Hooks
@@ -181,11 +186,11 @@ export const config: WebdriverIO.Config = {
      * @param {<Object>} results object containing test results
      */
      onComplete: function(exitCode, config, capabilities, results) {
-        generate({
+       /*  generate({
             jsonDir: './reports/json',
             reportPath: './reports/html',
             openReportInBrowser: false
-        });
+        }); */
     },
     /**
      * Gets executed when a refresh happens.
