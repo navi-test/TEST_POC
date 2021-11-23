@@ -1,9 +1,9 @@
 
 version: 2.1
-dependencies:
-  post:
-    - wget https://saucelabs.com/downloads/sc-latest-linux.tar.gz
-    - tar -xzf sc-latest-linux.tar.gz
+#dependencies:
+#  post:
+#    - wget https://saucelabs.com/downloads/sc-latest-linux.tar.gz
+#    - tar -xzf sc-latest-linux.tar.gz
 workflows:
   test-deploy:
     jobs:
@@ -26,19 +26,20 @@ jobs:
           name: Install Testing Dependencies
           command: cd test/e2e ; ls ; npm install
 
+       
+      - run:
+          name: Download Sauce Connect Proxy
+          command: wget https://saucelabs.com/downloads/sc-4.7.1-linux.tar.gz
+      - run:
+          name: Extract tar file for linux
+          command: tar -xf sc-4.7.1-linux.tar.gz
       - run: |
          cd sc-*-linux && ./bin/sc --user sso-optum-hyusein.hyuseinov --api-key 8c08d53c-97b0-4dc2-8edf-cc2d46c1784c --readyfile ~/sauce_is_ready:
           background: true  
          while [ ! -e ~/sauce_is_ready ]; do sleep 1; done
          sleep 30
          cd test/e2e
-         npm run sauce  
-     # - run:
-     #     name: Download Sauce Connect Proxy
-     #     command: wget https://saucelabs.com/downloads/sc-4.7.1-linux.tar.gz
-     # - run:
-     #     name: Extract tar file for linux
-     #     command: tar -xf sc-4.7.1-linux.tar.gz
+         npm run sauce 
      # - run:
      #     name: Start Sauce Labs Tunnel
      #     background: true
