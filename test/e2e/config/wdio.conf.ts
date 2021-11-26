@@ -25,7 +25,7 @@ export const config: WebdriverIO.Config = {
     services: [
         // These services are being set in the config files dedicated for the given platform, e.g. android.conf.ts and sauce.conf.ts
       ],
-   // reporters: ['spec',['allure', {outputDir: 'allure-results'}]],
+   reporters: ['spec',['allure', {outputDir: 'allure-results'}]],
    framework: 'cucumber',
    //framework: 'mocha',
    cucumberOpts: {
@@ -51,14 +51,14 @@ export const config: WebdriverIO.Config = {
         webdriver: 'debug',
         '@wdio/appium-service': 'debug'
     },
-   reporters: [
+ /*   reporters: [
     [
         'cucumberjs-json', {
         jsonFolder: './reports/json',
         language: 'en',
     }
     ]
-],
+], */
 
    /*  mochaOpts: {
         ui: 'bdd',
