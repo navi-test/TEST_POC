@@ -42,4 +42,4 @@ jobs:
           npm run sauce
       
       - store_test_results:
-          path: test/e2e/reports/json
+          path: test/e2e/.tmp/json/

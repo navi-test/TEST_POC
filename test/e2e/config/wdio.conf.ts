@@ -1,4 +1,5 @@
 const { generate } = require('multiple-cucumber-html-reporter');
+const { removeSync } = require('fs-extra');
 export const config: WebdriverIO.Config = {
     
   specs: [
@@ -25,7 +26,7 @@ export const config: WebdriverIO.Config = {
     services: [
         // These services are being set in the config files dedicated for the given platform, e.g. android.conf.ts and sauce.conf.ts
       ],
-   reporters: ['spec',['allure', {outputDir: 'allure-results'}]],
+   //reporters: ['spec',['allure', {outputDir: 'allure-results'}]],
    framework: 'cucumber',
    //framework: 'mocha',
    cucumberOpts: {
@@ -51,14 +52,13 @@ export const config: WebdriverIO.Config = {
         webdriver: 'debug',
         '@wdio/appium-service': 'debug'
     },
- /*   reporters: [
-    [
-        'cucumberjs-json', {
-        jsonFolder: './reports/json',
-        language: 'en',
-    }
-    ]
-], */
+    reporters: [
+        [ 'cucumberjs-json', {
+                jsonFolder: '.tmp/json/',
+                language: 'en',
+            },
+        ],
+    ],
 
    /*  mochaOpts: {
         ui: 'bdd',
@@ -77,8 +77,9 @@ export const config: WebdriverIO.Config = {
      * @param {Object} config wdio configuration object
      * @param {Array.<Object>} capabilities list of capabilities details
      */
-    // onPrepare: function (config, capabilities) {
-    // },
+     onPrepare: function (config, capabilities) {
+        removeSync('.tmp/');
+    },
     /**
      * Gets executed before a worker process is spawned and can be used to initialise specific service
      * for that worker as well as modify runtime environments in an async fashion.
@@ -187,10 +188,13 @@ export const config: WebdriverIO.Config = {
      */
      onComplete: function(exitCode, config, capabilities, results) {
         generate({
-            jsonDir: './reports/json',
-            reportPath: './reports/html',
-            openReportInBrowser: false
-        });
+            // Required
+            // This part needs to be the same path where you store the JSON files
+            // default = '.tmp/json/'
+            jsonDir: '.tmp/json/',
+            reportPath: '.tmp/report/',
+            // for more options see https://github.com/wswebcreation/multiple-cucumber-html-reporter#options
+          });
     },
     /**
      * Gets executed when a refresh happens.
