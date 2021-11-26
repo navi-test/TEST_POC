@@ -17,9 +17,9 @@ jobs:
       - checkout
       - run: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
       - run: nvm install --lts 
-      - run:
-          name: Install Dependencies
-          command: yarn install
+    #  - run:
+    #      name: Install Dependencies
+    #      command: yarn install
       - run:
           name: Install Testing Dependencies
           command: cd test/e2e ; ls ; npm install
@@ -31,30 +31,15 @@ jobs:
       - run:
           name: Extract tar file for linux
           command: tar -xf sc-4.7.1-linux.tar.gz
-    #  - run: |
-    #     cd sc-*-linux && ./bin/sc --user sso-optum-hyusein.hyuseinov --api-key 8c08d53c-97b0-4dc2-8edf-cc2d46c1784c --readyfile ~/sauce_is_ready:
-    #      background: true  
-    #     while [ ! -e ~/sauce_is_ready ]; do sleep 1; done
-    #     sleep 30
-    #     cd test/e2e
-    #     npm run sauce 
       - run:
-          name: Start Sauce Labs Tunnel
-          background: true
-          command: ./sc-4.7.1-linux/bin/sc --user sso-optum-hyusein.hyuseinov --api-key 8c08d53c-97b0-4dc2-8edf-cc2d46c1784c --verbose
-     #command: ./sc-4.7.1-linux/bin/sc -u sso-optum-hyusein.hyuseinov -k 8c08d53c-97b0-4dc2-8edf-cc2d46c1784c --region us-west --tunnel-name sso-optum-hyusein.hyuseinov_tunnel_name
-     
+         background: true
+         command: ./sc-4.7.1-linux/bin/sc --user sso-optum-hyusein.hyuseinov --api-key 8c08d53c-97b0-4dc2-8edf-cc2d46c1784c --readyfile ~/sauce_is_ready
+       
+  
       - run: |
-          sleep 31
+          while [ ! -e ~/sauce_is_ready ]; do sleep 1; done
           cd test/e2e
           npm run sauce
-      - run:
-          name: Failure
-          command: cat /tmp/sc.log
-          when: on_fail
-      #- run:
-      #    name: Start Sauce Labs Tunnel
-      #    command: ./sc-4.7.1-linux/bin/sc -u sso-optum-hyusein.hyuseinov -k 8c08d53c-97b0-4dc2-8edf-cc2d46c1784c --region us-west --tunnel-name sso-optum-hyusein.hyuseinov_tunnel_name &
-      #- run:
-      #    name: Run Sauce Labs Tests
-      #    command: cd test/e2e ; sleep 60 ; npm run sauce
+      
+      - store_test_results:
+          path: test/e2e/reports/json
