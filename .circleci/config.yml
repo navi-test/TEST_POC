@@ -35,18 +35,11 @@ jobs:
          background: true
          command: ./sc-4.7.1-linux/bin/sc --user sso-optum-hyusein.hyuseinov --api-key 8c08d53c-97b0-4dc2-8edf-cc2d46c1784c --readyfile ~/sauce_is_ready
        
-    #  - run:
-    #      name: Start Sauce Labs Tunnel
-    #      background: true
-    #      command: ./sc-4.7.1-linux/bin/sc --user sso-optum-hyusein.hyuseinov --api-key 8c08d53c-97b0-4dc2-8edf-cc2d46c1784c --verbose
-     
+  
       - run: |
           while [ ! -e ~/sauce_is_ready ]; do sleep 1; done
           cd test/e2e
           npm run sauce
-      #- run:
-      #    name: Start Sauce Labs Tunnel
-      #    command: ./sc-4.7.1-linux/bin/sc -u sso-optum-hyusein.hyuseinov -k 8c08d53c-97b0-4dc2-8edf-cc2d46c1784c --region us-west --tunnel-name sso-optum-hyusein.hyuseinov_tunnel_name &
-      #- run:
-      #    name: Run Sauce Labs Tests
-      #    command: cd test/e2e ; sleep 60 ; npm run sauce
+      
+      - store_test_results:
+          path: reports/json
