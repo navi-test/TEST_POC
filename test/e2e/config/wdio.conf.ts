@@ -26,7 +26,7 @@ export const config: WebdriverIO.Config = {
     services: [
         // These services are being set in the config files dedicated for the given platform, e.g. android.conf.ts and sauce.conf.ts
       ],
-   //reporters: ['spec',['allure', {outputDir: 'allure-results'}]],
+   reporters: ['spec',['allure', {outputDir: 'allure-results'}]],
    framework: 'cucumber',
    //framework: 'mocha',
    cucumberOpts: {
@@ -52,13 +52,13 @@ export const config: WebdriverIO.Config = {
         webdriver: 'debug',
         '@wdio/appium-service': 'debug'
     },
-    reporters: [
+   /*  reporters: [
         [ 'cucumberjs-json', {
                 jsonFolder: '.tmp/json/',
                 language: 'en',
             },
         ],
-    ],
+    ], */
 
    /*  mochaOpts: {
         ui: 'bdd',
@@ -78,7 +78,7 @@ export const config: WebdriverIO.Config = {
      * @param {Array.<Object>} capabilities list of capabilities details
      */
      onPrepare: function (config, capabilities) {
-        removeSync('.tmp/');
+     //   removeSync('.tmp/');
     },
     /**
      * Gets executed before a worker process is spawned and can be used to initialise specific service
@@ -187,14 +187,14 @@ export const config: WebdriverIO.Config = {
      * @param {<Object>} results object containing test results
      */
      onComplete: function(exitCode, config, capabilities, results) {
-        generate({
+     /*    generate({
             // Required
             // This part needs to be the same path where you store the JSON files
             // default = '.tmp/json/'
             jsonDir: '.tmp/json/',
             reportPath: '.tmp/report/',
             // for more options see https://github.com/wswebcreation/multiple-cucumber-html-reporter#options
-          });
+          }); */
     },
     /**
      * Gets executed when a refresh happens.
