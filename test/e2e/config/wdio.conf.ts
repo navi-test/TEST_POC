@@ -186,11 +186,11 @@ export const config: WebdriverIO.Config = {
      * @param {<Object>} results object containing test results
      */
      onComplete: function(exitCode, config, capabilities, results) {
-       /*  generate({
+        generate({
             jsonDir: './reports/json',
             reportPath: './reports/html',
             openReportInBrowser: false
-        }); */
+        });
     },
     /**
      * Gets executed when a refresh happens.
