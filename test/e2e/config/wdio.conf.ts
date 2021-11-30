@@ -1,5 +1,6 @@
 const { generate } = require('multiple-cucumber-html-reporter');
 const { removeSync } = require('fs-extra');
+const allure = require('allure-commandline');
 export const config: WebdriverIO.Config = {
     
   specs: [
@@ -79,6 +80,7 @@ export const config: WebdriverIO.Config = {
      */
      onPrepare: function (config, capabilities) {
      //   removeSync('.tmp/');
+     //removeSync('allure-results/');
     },
     /**
      * Gets executed before a worker process is spawned and can be used to initialise specific service
@@ -195,6 +197,24 @@ export const config: WebdriverIO.Config = {
             reportPath: '.tmp/report/',
             // for more options see https://github.com/wswebcreation/multiple-cucumber-html-reporter#options
           }); */
+    /*       const reportError = new Error('Could not generate Allure report')
+        const generation = allure(['generate', 'allure-results', '--clean'])
+        return new Promise((resolve, reject) => {
+            const generationTimeout = setTimeout(
+                () => reject(reportError),
+                5000)
+
+            generation.on('exit', function(exitCode) {
+                clearTimeout(generationTimeout)
+
+                if (exitCode !== 0) {
+                    return reject(reportError)
+                }
+
+                console.log('Allure report successfully generated')
+                return
+            })
+        }) */
     },
     /**
      * Gets executed when a refresh happens.

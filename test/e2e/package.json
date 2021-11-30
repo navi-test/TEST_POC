@@ -15,6 +15,7 @@
   "author": "Hyusein Hyuseinov",
   "license": "ISC",
   "dependencies": {
+    "allure-commandline": "^2.13.8",
     "appium": "^1.22.0",
     "chai": "^4.3.4"
   },
