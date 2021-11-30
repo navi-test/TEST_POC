@@ -51,4 +51,4 @@ jobs:
           command: cd test/e2e; allure generate allure-results
 
       - store_test_results:
-          path: allure-report
+          path: test/e2e/allure-report
