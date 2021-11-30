@@ -17,6 +17,7 @@ jobs:
       image: ubuntu-2004:202104-01
     steps: 
       - checkout
+      - allure/install
       - run: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
       - run: nvm install --lts 
     #  - run:
@@ -47,7 +48,7 @@ jobs:
 
       - run:
           name: Generate Allure Report
-          command: cd test/e2e; npm i allure-commandline; allure generate allure-results
+          command: cd test/e2e; allure generate allure-results
 
       - store_test_results:
           path: test/e2e/allure-report/
