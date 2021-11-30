@@ -50,5 +50,5 @@ jobs:
           name: Generate Allure Report
           command: cd test/e2e; allure generate allure-results
 
-      - store_test_results:
+      - store_artifacts:
           path: test/e2e/allure-report
