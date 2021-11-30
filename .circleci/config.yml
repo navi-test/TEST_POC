@@ -27,7 +27,7 @@ jobs:
           command: cd test/e2e ; ls ; npm install
       - run:
           name: Install Allure-Reporter
-          command: npm i allure-commandline
+          command: cd test/e2e ; npm i allure-commandline
        
       - run:
           name: Download Sauce Connect Proxy
@@ -44,7 +44,7 @@ jobs:
           while [ ! -e ~/sauce_is_ready ]; do sleep 1; done
           cd test/e2e
           npm run sauce
-          
+
       - run:
           name: Generate Allure Report
           command: cd test/e2e; allure generate allure-results
