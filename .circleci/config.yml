@@ -8,23 +8,10 @@ dependencies:
 workflows:
   test-deploy:
     jobs:
-      - build
       - test
 
 
 jobs:  
-  build:
-    macos:
-      xcode: 13.0.0
-    steps:
-      - run: open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app/
-      - run: brew install watchman
-      - checkout
-      - run: ls
-      - run: node --version
-      - run: yarn install
-      - run: cd ios ; pod install
-      - run: yarn react-native run-ios
   test:
     machine:
       image: ubuntu-2004:202104-01
