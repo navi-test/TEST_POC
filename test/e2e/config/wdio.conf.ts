@@ -27,7 +27,10 @@ export const config: WebdriverIO.Config = {
     services: [
         // These services are being set in the config files dedicated for the given platform, e.g. android.conf.ts and sauce.conf.ts
       ],
-   reporters: ['spec',['allure', {outputDir: 'allure-results'}]],
+   reporters: ['spec',['allure', {
+       outputDir: 'allure-results',
+       disableWebdriverScreenshotsReporting: false
+    }]],
    framework: 'cucumber',
    //framework: 'mocha',
    cucumberOpts: {
@@ -223,11 +226,11 @@ export const config: WebdriverIO.Config = {
      */
     //onReload: function(oldSessionId, newSessionId) {
     //}
-   /*  afterTest: async function(test, context, { error, result, duration, passed, retries }) {
-        if (!passed) {
-            await browser.takeScreenshot();
-        }
-    }, */
+    afterTest: async function(test, context, { error, result, duration, passed, retries }) {
+        if (test.error !== undefined) {
+            browser.takeScreenshot();
+          }
+    },
 }
 
 

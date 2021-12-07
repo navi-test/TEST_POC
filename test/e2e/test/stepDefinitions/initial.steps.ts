@@ -18,3 +18,7 @@ When(/^I tap on Sign In button$/, async () => {
 Then(/^I should see an Error Message$/, async () => {
     await expect(await MainScreen.isErrorMessageDisplayed()).toEqual(true);
 });
+
+Then(/^I should not see an Error Message$/, async () => {
+    await expect(await MainScreen.isErrorMessageDisplayed()).toEqual(false);
+});
